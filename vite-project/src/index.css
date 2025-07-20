@@ -1,0 +1,15 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  min-height: 100vh;
+  height: 100%;
+  background: #18181b;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
