@@ -1,8 +1,6 @@
-/**
- * Raag Detection Service
- * Contains sophisticated algorithms for detecting Indian classical raags
- * based on swara sequences, patterns, and Vadi-Samvadi analysis
- */
+
+//Raag Detection Service
+
 
 import { raagDefinitions, getThaat } from '../utils/raagDefinitions.js';
 
@@ -29,12 +27,12 @@ export const detectRaags = (swaras) => {
       swaraFrequency[swara] = (swaraFrequency[swara] || 0) + 1;
     });
     
-    // Calculate Vadi-Samvadi bonus (most important swaras in raag)
+    // Calculate Vadi-Samvadi bonus 
     const vadiBonus = swaraFrequency[raag.vadi] ? (swaraFrequency[raag.vadi] / validSwaras.length) * 0.2 : 0;
     const samvadiBonus = swaraFrequency[raag.samvadi] ? (swaraFrequency[raag.samvadi] / validSwaras.length) * 0.1 : 0;
     const vadiSamvadiBonus = vadiBonus + samvadiBonus;
     
-    // Calculate sequence accuracy for Aroha (ascending)
+    // Calculate sequence accuracy for Aroha 
     let arohaSequenceScore = 0;
     let arohaPresenceScore = 0;
     
@@ -50,7 +48,7 @@ export const detectRaags = (swaras) => {
       }
     }
     
-    // Calculate sequence accuracy for Avaroha (descending)
+    // Calculate sequence accuracy for Avaroha 
     let avarohaSequenceScore = 0;
     let avarohaPresenceScore = 0;
     
@@ -66,7 +64,7 @@ export const detectRaags = (swaras) => {
       }
     }
     
-    // Calculate Pakad (characteristic phrase) accuracy
+    // Calculate Pakad accuracy
     let pakadScore = 0;
     raag.pakad.forEach(expectedSwara => {
       if (validSwaras.includes(expectedSwara)) {
@@ -91,7 +89,7 @@ export const detectRaags = (swaras) => {
     const presenceConfidence = (arohaPresenceConfidence * 0.3 + avarohaPresenceConfidence * 0.3 + pakadConfidence * 0.2);
     const sequenceConfidence = (arohaSequenceConfidence * 0.4 + avarohaSequenceConfidence * 0.4 + pakadConfidence * 0.2);
     
-    // Final confidence combines presence, sequence, noise penalty, and vadi-samvadi bonus
+    // Final confidence combines presence, sequence, noise penalty, and vadi-samvadi 
     const finalConfidence = ((presenceConfidence * 0.4 + sequenceConfidence * 0.6) * noisePenalty) + vadiSamvadiBonus;
     
     if (finalConfidence >= 0.4) { // Higher threshold for better accuracy

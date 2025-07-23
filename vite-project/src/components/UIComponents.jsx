@@ -3,22 +3,20 @@ export const TuningMeter = ({ cents }) => {
   const clamped = Math.max(-50, Math.min(50, cents || 0));
   const percent = ((clamped + 50) / 100) * 100;
   return (
-    <div className="w-full max-w-lg flex flex-col items-center mt-4 sm:mt-6 lg:mt-8 mb-2 sm:mb-4">
-      <div className="w-full h-4 sm:h-6 bg-gray-200 rounded-full relative border border-gray-300 overflow-hidden">
-        {/* Animated pointer */}
+    <div className="w-full max-w-lg flex flex-col items-center mt-5 sm:mt-7 lg:mt-9 mb-3 sm:mb-5">
+      <div className="w-full h-5 sm:h-7 bg-yellow-200 rounded-full relative border border-yellow-700 overflow-hidden">
         <div
-          className="absolute top-0 h-4 sm:h-6 w-1 sm:w-1.5 rounded-full bg-amber-600 transition-all duration-200"
+          className="absolute top-0 h-5 sm:h-7 w-1 sm:w-2 rounded-full bg-red-700 transition-all duration-200"
           style={{ left: `calc(${percent}% - 2px)` }}
         />
-        {/* Center line */}
-        <div className="absolute top-0 left-1/2 h-4 sm:h-6 w-0.5 bg-amber-500" style={{ transform: 'translateX(-50%)' }} />
+        <div className="absolute top-0 left-1/2 h-5 sm:h-7 w-0.5 bg-yellow-700" style={{ transform: 'translateX(-50%)' }} />
       </div>
-      <div className="flex justify-between w-full max-w-lg text-gray-600 text-xs mt-1 sm:mt-2 px-1 font-medium">
+      <div className="flex justify-between w-full max-w-lg text-gray-700 text-sm mt-2 sm:mt-3 px-2 font-medium">
         <span>-50 cents</span>
-        <span className="text-amber-700 font-semibold">In Tune</span>
+        <span className="text-red-700 font-semibold">In Tune</span>
         <span>+50 cents</span>
       </div>
-      <div className="text-amber-700 text-sm sm:text-lg mt-1 font-bold">
+      <div className="text-red-700 text-lg sm:text-xl mt-2 font-bold">
         {cents !== null ? `${cents > 0 ? '+' : ''}${cents.toFixed(1)} cents` : <span className="text-gray-400">—</span>}
       </div>
     </div>
@@ -46,7 +44,7 @@ export const RaagConfidenceMeter = ({ confidence }) => {
 // Mode Selector Component
 export const ModeSelector = ({ detectionMode, setDetectionMode }) => {
   return (
-    <div className="bg-gradient-to-br from-white via-amber-50 to-orange-50 border-2 border-amber-400 shadow-xl p-4 sm:p-6 rounded-lg w-full max-w-md flex flex-col items-center mx-auto">
+    <div className="bg-gradient-to-br from-white via-amber-50 to-orange-50 border-2 border-yellow-800 shadow-xl p-4 sm:p-6 rounded-lg w-full max-w-md flex flex-col items-center mx-auto">
       <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-gray-800">
         Detection Mode
       </h2>
@@ -77,44 +75,39 @@ export const ModeSelector = ({ detectionMode, setDetectionMode }) => {
 };
 
 // Base Scale Selector Component
-export const BaseScaleSelector = ({ baseScale, setBaseScale, baseOctave, setBaseOctave, handleTone }) => {
-  const noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-  
-  return (
-    <div className="bg-gradient-to-br from-white via-amber-50 to-orange-50 border-2 border-amber-400 shadow-xl p-4 sm:p-6 rounded-lg w-full max-w-md flex flex-col items-center mx-auto">
-      <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-gray-800">
+export const BaseScaleSelector = ({ baseScale, setBaseScale, baseOctave, setBaseOctave, handleTone }) => (
+  <div className="w-full flex flex-col items-center mb-2">
+    <div className="bg-gradient-to-br from-white via-yellow-50 to-amber-100 border-2 border-yellow-800 shadow-lg rounded-xl w-full max-w-md px-6 py-4 flex flex-col items-center">
+      <h2 className="text-base sm:text-lg font-bold mb-3 text-yellow-900 font-serif tracking-wide">
         Select Base Scale
       </h2>
-      <div className="flex flex-col sm:flex-row justify-around mb-4 sm:mb-6 gap-4 sm:gap-8 w-full">
-        {/* Base Scale Selection */}
-        <div className="flex flex-col items-center">
-          <label className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2 font-medium">Scale</label>
-          <select
-            className="bg-white border-2 border-amber-400 text-gray-800 rounded-md p-2 px-3 sm:px-4 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 shadow-sm text-sm sm:text-base"
-            value={baseScale}
-            onChange={e => setBaseScale(e.target.value)}
-          >
-            {noteNames.map((n) => <option key={n} value={n}>{n}</option>)}
-          </select>
-        </div>
-        {/* Octave Selection */}
-        <div className="flex flex-col items-center">
-          <label className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2 font-medium">Octave</label>
-          <select
-            className="bg-white border-2 border-amber-400 text-gray-800 rounded-md p-2 px-3 sm:px-4 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 shadow-sm text-sm sm:text-base"
-            value={baseOctave}
-            onChange={e => setBaseOctave(e.target.value)}
-          >
-            {[1,2,3,4,5,6,7,8].map((n) => <option key={n} value={n}>{n}</option>)}
-          </select>
-        </div>
+      <div className="flex flex-row justify-center items-center gap-4 w-full">
+        <select
+          value={baseScale}
+          onChange={e => setBaseScale(e.target.value)}
+          className="w-40 sm:w-48 px-4 py-2 border border-yellow-800 rounded-lg bg-yellow-50 text-yellow-900 font-semibold text-base text-center shadow focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
+        >
+          {["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"].map(note => (
+            <option key={note} value={note}>{note}</option>
+          ))}
+        </select>
+        <select
+          value={baseOctave}
+          onChange={e => setBaseOctave(e.target.value)}
+          className="w-32 sm:w-40 px-4 py-2 border border-yellow-800 rounded-lg bg-yellow-50 text-yellow-900 font-semibold text-base text-center shadow focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
+        >
+          {["2", "3", "4", "5", "6"].map(oct => (
+            <option key={oct} value={oct}>{oct}</option>
+          ))}
+        </select>
+        <button
+          onClick={() => handleTone(baseOctave, baseScale)}
+          className="ml-2 px-4 py-2 bg-yellow-200 border border-yellow-800 rounded-lg text-yellow-900 font-semibold hover:bg-yellow-300 transition-all shadow"
+          title="Play Sa"
+        >
+          ▶️ सा
+        </button>
       </div>
-      <button
-        onClick={() => handleTone(baseOctave, baseScale)}
-        className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-4 sm:px-6 py-2 rounded-lg font-medium transition-all duration-200 shadow-md text-sm sm:text-base"
-      >
-        Listen
-      </button>
     </div>
-  );
-}; 
+  </div>
+);

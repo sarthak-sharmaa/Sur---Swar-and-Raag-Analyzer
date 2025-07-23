@@ -1,8 +1,4 @@
-/**
- * Tanpura Service
- * Handles tanpura drone synthesis using Tone.js
- * Provides continuous Sa and Pa drone for raag practice
- */
+// Tanpura
 
 import * as Tone from 'tone';
 import { getPerfectFifth } from '../utils/audioUtils.js';
