@@ -1,4 +1,3 @@
-
 //Raag Detection Service
 
 
@@ -86,8 +85,12 @@ export const detectRaags = (swaras) => {
     const noisePenalty = Math.max(0, 1 - (extraSwaras.length / validSwaras.length));
     
     // Overall confidence with sequence importance
-    const presenceConfidence = (arohaPresenceConfidence * 0.3 + avarohaPresenceConfidence * 0.3 + pakadConfidence * 0.2);
-    const sequenceConfidence = (arohaSequenceConfidence * 0.4 + avarohaSequenceConfidence * 0.4 + pakadConfidence * 0.2);
+    const presenceConfidence = (
+      arohaPresenceConfidence * 0.35 +    // 35%
+      avarohaPresenceConfidence * 0.35 +  // 35%
+      pakadConfidence * 0.3               // 30%
+    );
+    const sequenceConfidence = (arohaSequenceConfidence * 0.4 + avarohaSequenceConfidence * 0.4 + 0.2);
     
     // Final confidence combines presence, sequence, noise penalty, and vadi-samvadi 
     const finalConfidence = ((presenceConfidence * 0.4 + sequenceConfidence * 0.6) * noisePenalty) + vadiSamvadiBonus;
@@ -129,4 +132,4 @@ export const detectRaags = (swaras) => {
   raagMatches.sort((a, b) => b.confidence - a.confidence);
   
   return raagMatches;
-}; 
+};
