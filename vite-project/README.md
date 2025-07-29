@@ -177,41 +177,6 @@ The application includes 30+ major raags across all major thaats:
 ### Todi Thaat
 - Todi, Miyan Ki Todi
 
-## 🧪 Testing & Validation
-
-### Quick Test Report Template
-```markdown
-# Sur Application Test Report
-
-## Test Environment
-- Browser: [Your browser]
-- OS: [Your OS]
-- Microphone: [Your microphone]
-- Environment: [Quiet room/Studio/etc.]
-
-## Test Results
-
-### Pitch Detection
-- **Total Tests**: [Number]
-- **Successful Detections**: [Number]
-- **Accuracy**: [Percentage]%
-- **Average Response Time**: [X]ms
-- **Frequency Range Tested**: [Range]
-
-### Raag Detection
-- **Yaman Raag**: [X]% confidence
-- **Bhairav Raag**: [X]% confidence
-- **Bhairavi Raag**: [X]% confidence
-
-## Conclusion
-[Brief summary of performance]
-```
-
-**Testing Tips:**
-- Use a digital tuner app or piano for reference
-- Test in a quiet environment
-- Record your actual results for accurate metrics
-- Check browser console for response time data
 
 ## 🛠️ Technical Details
 
@@ -221,11 +186,6 @@ The application includes 30+ major raags across all major thaats:
 - **Clarity Threshold**: 0.7 (configurable)
 - **Volume Threshold**: 0.001 RMS
 
-### Performance Optimizations
-- **Debounced note capture**: 400ms delay for raag mode
-- **Efficient pattern matching**: O(n) complexity
-- **Memory management**: Proper cleanup of audio resources
-- **Modular architecture**: Easy to extend and maintain
 
 ### Browser Compatibility
 - Chrome/Chromium (recommended)
@@ -240,10 +200,6 @@ The application includes 30+ major raags across all major thaats:
 3. Make your changes
 4. Add tests if applicable
 5. Submit a pull request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
