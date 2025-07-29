@@ -232,9 +232,15 @@ const Body = () => {
           <ModeSelector detectionMode={detectionMode} setDetectionMode={setDetectionMode} />
           <BaseScaleSelector
             baseScale={baseScale}
-            setBaseScale={setBaseScale}
+            setBaseScale={value => {
+              setBaseScale(value);
+              baseScaleRef.current = value; // <-- update ref when dropdown changes
+            }}
             baseOctave={baseOctave}
-            setBaseOctave={setBaseOctave}
+            setBaseOctave={value => {
+              setBaseOctave(value);
+              baseOctaveRef.current = value; // <-- update ref when dropdown changes
+            }}
             handleTone={handleTone}
           />
           <div className="bg-gradient-to-br from-yellow-50 via-amber-50 to-stone-100 border-2 border-yellow-900 shadow-lg p-4 sm:p-6 rounded-2xl w-full flex flex-col items-center mx-auto font-serif">
